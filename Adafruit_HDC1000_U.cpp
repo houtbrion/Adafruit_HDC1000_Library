@@ -2,15 +2,16 @@
 #include "Adafruit_HDC1000_U.h"
 
 Adafruit_HDC1000_Unified::Adafruit_HDC1000_Unified(uint8_t type, int32_t tempSensorId, int32_t humiditySensorId, uint8_t addr):
-	_hdc(type),
+	_hdc(type,addr),
 	_type(type),
 	_temp(this, tempSensorId),
 	_humidity(this, humiditySensorId),
-	_addr(this,addr)
+	_addr(addr)
 {}
 
 boolean Adafruit_HDC1000_Unified::begin() {
 	Wire.begin();
+	_hdc.begin();
 	return true;
 }
 
